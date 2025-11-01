@@ -3,15 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><em>CEREALIA</em> – Digital Twins for Agriculture</title>
+  <title>CEREALIA</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1><em>CEREALIA</em>: Weather-Driven Digital Twin Framework for Agriculture</h1>
-    <p>Enhancing farm-scale decision making under imperfect weather conditions</p>
-  </header>
+<header>
+  <h1><em>CEREALIA:</em> A Digital Twin Framework for Weather-Driven Agricultural Decision-Making Under Imperfect Conditions</h1>
+  
+  <div class="authors">
+    <p>
+      Tamim Ahmed &nbsp; | &nbsp; 
+      <strong><a href="https://monowarhasan.info/" target="_blank">Monowar Hasan</a></strong>
+    </p>
+     <p>
+      <a href="mailto:tamim.ahmed@wsu.edu">tamim.ahmed@wsu.edu</a> &nbsp; | &nbsp; 
+      <a href="mailto:monowar.hasan@wsu.edu">monowar.hasan@wsu.edu</a>
+    </p>
+    <p>
+      School of EECS, Washington State University, Pullman, USA
+    </p>
+  </div>
+</header>
+
+
+<section class="paper-info">
+  <p>
+    Our paper has been accepted to 
+    <em>SIGSPATIAL '25</em> (November 3–6, 2025, Minneapolis, MN, USA)!
+  </p>
+
+  <p>
+    T. Ahmed and M. Hasan, 
+    "Weather-driven agricultural decision-making under imperfect conditions," 
+    in <em>Proc. of ACM International Conference on Advances in Geographic Information Systems (SIGSPATIAL)</em>, 
+    pp. 1–4, Nov. 2025. 
+    [<a href="https://monowarhasan.info/papers/Cerealia_SIGSPATIAL'25.pdf" target="_blank">PDF</a>] 
+    [<a href="https://arxiv.org/abs/2508.08326" target="_blank">Extended Version</a>] 
+    <button onclick="toggleBibtex()">Cite</button>
+  </p>
+
+  <pre id="bibtex" style="display:none; background:#f5f5f5; padding:10px; border:1px solid #ddd; border-radius:5px;">
+@inproceedings{ahmed2025cerealia,
+  author    = {Tamim Ahmed and Monowar Hasan},
+  title     = {Weather-Driven Agricultural Decision-Making Using Digital Twins Under Imperfect Conditions},
+  booktitle = {Proceedings of the 33rd ACM International Conference on Advances in Geographic Information Systems (SIGSPATIAL '25)},
+  year      = {2025},
+  pages     = {1--4},
+  address   = {Minneapolis, MN, USA},
+  publisher = {ACM},
+  isbn      = {979-8-4007-2086-4/2025/11},
+  doi       = {10.1145/3748636.3764158}
+}
+  </pre>
+
+  <script>
+    function toggleBibtex() {
+      const bib = document.getElementById("bibtex");
+      if (bib.style.display === "none" || bib.style.display === "") {
+        bib.style.display = "block";
+      } else {
+        bib.style.display = "none";
+      }
+    }
+  </script>
+</section>
+
+
+
 
   <section>
     <h2>Background</h2>
@@ -21,7 +84,7 @@
       These inconsistencies can lead to poor predictions and crop losses.
     </p>
 
-    <figure class="diagram">
+    <figure class="diagram overview">
       <img src="images/overview-mh.svg" alt="High-level schematic of CEREALIA">
       <figcaption>
         High-level schematic of this work. <em>CEREALIA</em> stores historical weather traces and simulated anomalous
@@ -42,15 +105,15 @@
       and supports resilient decision-making when perfect data is unavailable.
     </p>
 
-    <figure class="diagram">
-  <img src="images/pipeline-mh.drawio.svg" alt="Workflow of CEREALIA" width="300">
-  <figcaption>
-    Workflow of <em>CEREALIA</em>. We make <em>CEREALIA</em> modular that allows designers to integrate various noisy
-    data that can be used with historical weather traces to train machine learning model(s). A runtime consistency
-    checker module uses a trained model to check for imperfect measurements and their impact on targeted
-    decision-making applications (for instance, fruit heat/frost prediction).
-  </figcaption>
-</figure>
+    <figure class="diagram pipeline">
+      <img src="images/pipeline-mh.drawio.svg" alt="Workflow of CEREALIA">
+      <figcaption>
+        Workflow of <em>CEREALIA</em>. We make <em>CEREALIA</em> modular that allows designers to integrate various noisy
+        data that can be used with historical weather traces to train machine learning model(s). A runtime consistency
+        checker module uses a trained model to check for imperfect measurements and their impact on targeted
+        decision-making applications (for instance, fruit heat/frost prediction).
+      </figcaption>
+    </figure>
 
 
     <h2>Key Contributions</h2>
@@ -61,13 +124,205 @@
       <li>Conducted <strong>two case studies</strong>: weather data imputation and fruit surface temperature prediction with <em>CEREALIA</em>.</li>
     </ul>
 
+
+    <figure class="diagram zetson">
+  <img src="images/zetson_weather_station.svg" alt="High-level schematic of CEREALIA">
+  <figcaption>
+  Real-world deployment of <em>CEREALIA<em> on an NVIDIA Jetson Agx Orin and connected to a live weather station located in Quincy, Washington. The setup streams live sensor data to the digital twin for anomaly detection, imputing missing or faulty values, and decision-support inference.
+  </figcaption>
+</figure>
+
+
+
+<h2>Inconsistency Generation in <em>CEREALIA</em></h2>
+
+<p>
+  To realistically study imperfect weather data, <em>CEREALIA</em> includes a 
+  <strong>noise generator module</strong> that emulates sensor faults. 
+  This allows us to inject anomalies into otherwise clean data and observe 
+  how inconsistency affects decision-making models.
+</p>
+
+<figure class="diagram fault">
+  <img src="images/fault_visualization.svg" alt="Visualization of noise generators in CEREALIA">
+  <figcaption>
+    Visualization of four types of inconsistencies in air temperature readings: 
+    (a) Random, (b) Malfunction, (c) Drift, and (d) Bias.
+  </figcaption>
+</figure>
+
+<p>
+  We consider the following four types of inconsistencies:
+</p>
+<ul>
+  <li><strong>Random:</strong> unpredictable spikes in measurements, 
+      \( X_{\text{random}}(t) = X(t) \times (1 + \eta_d) \), 
+      where \( \eta_d \) is drawn randomly with probability \( d \).</li>
+
+  <li><strong>Malfunction:</strong> abrupt oscillations caused by sensor errors, 
+      \( X_{\text{malfunction}}(t) = X(t) + \epsilon \), 
+      where \( \epsilon \sim \mathcal{N}(0,\sigma^2) \times \text{intensity} \).</li>
+
+  <li><strong>Drift:</strong> gradual deviation from the true value, 
+      \( X_{\text{drift}}(t) = X(t) + \delta + \epsilon \), 
+      with offset \( \delta = X(t_0)\times\text{intensity} \).</li>
+
+  <li><strong>Bias:</strong> consistent scaling across readings, 
+      \( X_{\text{bias}}(t) = \mu \cdot \alpha \), 
+      where \( \mu \) is the mean over a window and \( \alpha \) is a bias factor.</li>
+</ul>
+
+<p>
+  These generators mimic common real-world sensor faults such as random spikes, 
+  faulty oscillations, long-term drifts, and constant offsets. Incorporating them 
+  allows <em>CEREALIA</em> to test robustness of anomaly detection and 
+  decision-support models under imperfect weather data.
+</p>
+
+<h2>Machine Learning Models for Inconsistency Detection</h2>
+
+<p>
+  To classify inconsistent weather measurements, <em>CEREALIA</em> leverages a diverse set of 
+  <strong>nine state-of-the-art neural network models</strong>. These models capture both 
+  short-term patterns and long-term temporal dependencies in weather data.
+</p>
+
+<ul>
+  <li><strong>CNN Models:</strong> Temporal Convolutional Network (TCN) and ResNet – 
+      effective for extracting hierarchical features from time-series data.</li>
+  <li><strong>RNN Models:</strong> LSTM, Bi-LSTM, and GRU – designed to learn sequential 
+      dependencies across weather measurements.</li>
+  <li><strong>Transformer Models:</strong> Time-Series Transformer (TST) and Informer – 
+      capture long-range relationships using self-attention mechanisms.</li>
+  <li><strong>Hybrid Models:</strong> TST-AE and LSTM-AE – autoencoder architectures that 
+      combine sequence learning with feature reconstruction.</li>
+</ul>
+
+<p>
+  Together, these models allow <em>CEREALIA</em> to detect and classify anomalies such as 
+  random noise, sensor malfunctions, drifts, and biases with high accuracy while operating 
+  efficiently on embedded hardware.
+</p>
+
+<h2>Results Summary</h2>
+
+<p>
+  We evaluated <em>CEREALIA</em> with nine machine learning models across multiple weather datasets. 
+  The key findings are:
+</p>
+
+<ul>
+  <li><strong>High Detection Accuracy:</strong> Most models reliably detected inconsistencies, 
+      with bias and drift faults being the easiest to classify.</li>
+  <li><strong>Model Variability:</strong> CNN and RNN models (ResNet, LSTM) showed the most 
+      consistent performance across all noise types, while hybrid autoencoders sometimes 
+      struggled with rare fault patterns.</li>
+  <li><strong>Lightweight Operation:</strong> Inference is fast (under 1 second) and memory usage 
+      is minimal (less than 0.4 MB per instance), making <em>CEREALIA</em> deployable on 
+      embedded devices like NVIDIA Jetson Orin.</li>
+    <figure class="diagram scale">
+  <img src="images/scaleability.svg" alt="Scalability">
+  <figcaption>
+     Performance of Cerealia with multiple instances. The plots show average inference time (left) and
+average memory usage (right) for the Quincy network with varying container configurations. Even with 30
+instances of Cerealia running concurrently, we can get inference results in less than a second and no more
+than 0.4 MB of memory consumption.
+  </figcaption>
+</figure>
+  <li><strong>Scalability:</strong> Even when running 30 parallel instances, <em>CEREALIA</em> 
+      maintained low overhead and near real-time performance.</li>
+</ul>
+
+<p>
+  These results show that <em>CEREALIA</em> can robustly detect anomalies in weather data 
+  and support agricultural decision-making even under imperfect measurement conditions.
+</p>
+
+
+
     <h2>Case Studies</h2>
-    <p>
-      <strong>1. Weather Data Imputation:</strong> <em>CEREALIA</em> predicts missing or faulty weather sensor values using generative models,
-      ensuring continuous availability of critical farm data.<br><br>
-      <strong>2. Fruit Surface Temperature Prediction:</strong> <em>CEREALIA</em> helps growers anticipate fruit stress under inconsistent data conditions,
-      guiding timely use of cooling and protective measures.
-    </p>
+    <h3>1. Weather Data Imputation</h3>
+
+<p>
+  Weather stations often produce <strong>missing or faulty measurements</strong> due to sensor malfunctions 
+  or network outages. Such gaps can interrupt decision-making tasks like irrigation scheduling 
+  or fruit stress prediction.
+</p>
+
+<p>
+  <em>CEREALIA</em> addresses this issue using a <strong>generative recurrent model (C-RNN-GAN)</strong> 
+  trained on historical traces and noisy samples. The model can accurately predict missing values 
+  across key attributes (temperature, humidity, pressure, wind), ensuring uninterrupted data streams.
+</p>
+
+<figure class="diagram imputation">
+  <img src="images/imputation.svg" alt="Weather data imputation using CEREALIA">
+  <figcaption>
+    Figure 7: Example of <em>CEREALIA</em> imputing air temperature values when real-time sensor feeds 
+    are imperfect. Red shaded regions denote inconsistent inputs, replaced by predicted values.
+  </figcaption>
+</figure>
+
+<h3>2. Fruit Surface Temperature Prediction</h3>
+
+<p>
+  Heat stress is a major concern for fruit growers, as excessive surface temperature can 
+  cause sunburn and quality loss. Accurate, consistent weather inputs are required for 
+  triggering protective measures such as cooling, fogging, or netting. 
+  However, faulty sensor data can reduce prediction reliability.
+</p>
+
+<p>
+  <em>CEREALIA</em> uses the same set of <strong>nine neural models</strong> (CNN, RNN, Transformer, 
+  and hybrid autoencoders) to predict <strong>fruit surface temperature</strong> from weather 
+  attributes such as canopy air temperature, wind speed, dew point, and solar radiation. 
+  When imperfect measurements were introduced, prediction errors increased significantly. 
+  With <em>CEREALIA</em> imputing inconsistencies, performance improved and approached 
+  the no-fault baseline.
+</p>
+
+<table class="case-table">
+  <thead>
+    <tr>
+      <th rowspan="2">Models</th>
+      <th colspan="3">No Imperfection</th>
+      <th colspan="3">Imperfect Measurements</th>
+      <th colspan="3">Imputing Inconsistencies</th>
+    </tr>
+    <tr>
+      <th>MAE</th><th>RMSE</th><th>R²</th>
+      <th>MAE</th><th>RMSE</th><th>R²</th>
+      <th>MAE</th><th>RMSE</th><th>R²</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>TCN</td><td>0.6874</td><td>1.2911</td><td>0.9288</td><td>1.9347</td><td>4.9019</td><td>0.2634</td><td>0.7652</td><td>1.3466</td><td>0.9226</td></tr>
+    <tr><td>ResNet</td><td>0.5823</td><td>1.2395</td><td>0.9344</td><td>2.1711</td><td>5.4140</td><td>0.1014</td><td>0.6695</td><td>1.3038</td><td>0.9274</td></tr>
+    <tr><td>LSTM</td><td>0.8335</td><td>1.3969</td><td>0.9167</td><td>1.9208</td><td>4.1776</td><td>0.4650</td><td>0.9215</td><td>1.4688</td><td>0.9079</td></tr>
+    <tr><td>Bi-LSTM</td><td>1.0283</td><td>1.5890</td><td>0.8922</td><td>1.9139</td><td>3.8689</td><td>0.5411</td><td>1.0959</td><td>1.6467</td><td>0.8842</td></tr>
+    <tr><td>GRU</td><td>1.7242</td><td>2.1495</td><td>0.8027</td><td>2.3225</td><td>3.8069</td><td>0.5557</td><td>1.8041</td><td>2.2292</td><td>0.7879</td></tr>
+    <tr><td>TST</td><td>0.8128</td><td>1.3729</td><td>0.9195</td><td>2.4770</td><td>5.3600</td><td>0.1193</td><td>0.9348</td><td>1.8015</td><td>0.8615</td></tr>
+    <tr><td>Informer</td><td>0.5983</td><td>1.2530</td><td>0.9330</td><td>2.2968</td><td>5.3474</td><td>0.1234</td><td>0.6769</td><td>1.3122</td><td>0.9265</td></tr>
+    <tr><td>TST-AE</td><td>1.5949</td><td>1.9784</td><td>0.8329</td><td>2.3072</td><td>3.5205</td><td>0.6201</td><td>1.6834</td><td>2.0721</td><td>0.8167</td></tr>
+    <tr><td>LSTM-AE</td><td>0.9393</td><td>1.4239</td><td>0.9134</td><td>1.7415</td><td>3.4767</td><td>0.6295</td><td>1.0146</td><td>1.4949</td><td>0.9046</td></tr>
+  </tbody>
+</table>
+
+
+<p>
+  The results demonstrate that when faulty weather feeds are used directly, surface temperature 
+  prediction errors nearly double. With <em>CEREALIA</em> imputing inconsistencies, accuracy 
+  improves substantially, approaching the performance of perfect sensor data. 
+  This highlights <em>CEREALIA</em>’s role in enabling reliable crop protection strategies 
+  under imperfect weather conditions.
+</p>
+
+<p style="margin-top:1.5rem;">
+  <strong><em>CEREALIA</em> implementation is publicly available:</strong> 
+  <a href="https://github.com/CPS2RL/ag-dt" target="_blank">
+    https://github.com/CPS2RL/ag-dt
+  </a>
+</p>
 
     <h2>Impact</h2>
     <p>
@@ -75,11 +330,13 @@
       By leveraging digital twins, we show how imperfect measurements can still lead to reliable farm management outcomes.
     </p>
 
-    <p class="author">Written by <strong>Tamim Ahmed and Monowar Hasan</strong>, Washington State University</p>
   </section>
 
   <footer>
-    © 2025 Tamim Ahmed and Monowar Hasan
-  </footer>
+  <p>© 2025 || Tamim Ahmed and Monowar Hasan</p>
+  <p>The School of Electrical Engineering and Computer Science,<br>
+     Washington State University, Pullman, USA</p>
+</footer>
+
 </body>
 </html>
