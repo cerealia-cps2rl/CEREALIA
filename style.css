@@ -1,6 +1,3 @@
-/* ===========================
-   GLOBAL
-=========================== */
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -20,9 +17,17 @@ a:hover {
   color: #d35400;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+section ul li a {
+  color: #004aad;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+section ul li a:hover {
+  text-decoration: underline;
+  color: #d35400;
+}
+
 header {
   background: #0d1b4c;
   color: white;
@@ -41,9 +46,6 @@ header p {
   font-style: italic;
 }
 
-/* ===========================
-   SECTIONS & HEADINGS
-=========================== */
 section {
   max-width: 1000px;
   margin: 2rem auto;
@@ -60,9 +62,6 @@ h2 {
   font-style: normal;
 }
 
-/* ===========================
-   HIGHLIGHT BOX
-=========================== */
 .highlight-box {
   background: #f0f4ff;
   border-left: 5px solid #0d1b4c;
@@ -73,9 +72,6 @@ h2 {
   color: #000000;
 }
 
-/* ===========================
-   FIGURES
-=========================== */
 .diagram {
   text-align: center;
   margin: 2rem auto;
@@ -102,7 +98,6 @@ h2 {
   line-height: 1.4;
 }
 
-/* Individual image sizing */
 .diagram.overview img { width: min(550px, 100%); }
 .diagram.pipeline img { width: min(375px, 100%); }
 .diagram.fault img    { width: min(600px, 100%); }
@@ -110,9 +105,6 @@ h2 {
 .diagram.imputation img { width: min(800px, 100%); }
 .diagram.zetson img     { width: min(800px, 100%); }
 
-/* ===========================
-   PAPER INFO
-=========================== */
 .paper-info {
   background: #f9f9fc;
   border: 1px solid #ddd;
@@ -145,9 +137,6 @@ h2 {
   background: #142a73;
 }
 
-/* ===========================
-   BIBTEX BLOCK
-=========================== */
 #bibtex {
   margin-top: 1rem;
   font-size: 0.85rem;
@@ -162,16 +151,13 @@ h2 {
   color: #000000;
 }
 
-/* ===========================
-   TABLE
-=========================== */
 .case-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9rem;
   font-family: 'Raleway', sans-serif;
-  font-style: normal;  
+  font-style: normal;
 }
 
 .case-table th, .case-table td {
@@ -186,11 +172,8 @@ h2 {
   text-align: center;
 }
 
-/* ===========================
-   FOOTER (FIXED + MERGED)
-=========================== */
 footer {
-  background: #0d1b4c;   
+  background: #0d1b4c;
   color: white;
   text-align: center;
   padding: 1.8rem 0;
@@ -203,13 +186,19 @@ footer .authors {
   color: white;
 }
 
-footer .authors a {
+footer .authors p {
   color: white;
+}
+
+footer a,
+footer .authors a {
+  color: white !important;
   text-decoration: none;
   font-weight: 500;
 }
 
+footer a:hover,
 footer .authors a:hover {
-  color: #ffd966;
+  color: #ffd966 !important;
   text-decoration: underline;
 }
