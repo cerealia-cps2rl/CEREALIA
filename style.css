@@ -1,3 +1,4 @@
+/* ================== GLOBAL ================== */
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -6,50 +7,49 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+a {
+  color: #004aad;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #d35400;
+}
+
+/* Remove italics from all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-style: normal !important;
+}
+
+/* ================== HEADER ================== */
 header {
   background: #0d1b4c;
   color: white;
   padding: 2rem;
   text-align: center;
 }
+
 header h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2.8rem;
   margin-bottom: 0.3rem;
 }
+
 header p {
   font-size: 1.1rem;
   font-style: italic;
 }
 
-
-header .authors {
-  margin-top: 1rem;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: white; 
-}
-
-header .authors a {
-  color: #f5f5f5;   
-  text-decoration: none;
-  font-weight: 500;
-}
-
-header .authors a:hover {
-  text-decoration: underline;
-  color: #ffd966;   /* optional: golden hover color */
-}
-
-
-/* Sections */
+/* ================== SECTIONS ================== */
 section {
   max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1rem;
   text-align: left;
 }
+
 h2 {
   color: #000000;
   border-left: 5px solid #0d1b4c;
@@ -69,11 +69,12 @@ h2 {
   color: #000000;
 }
 
-/* Figures */
+/* ================== FIGURES ================== */
 .diagram {
   text-align: center;
   margin: 2rem auto;
 }
+
 .diagram img {
   display: block;
   margin: 0 auto;
@@ -83,6 +84,7 @@ h2 {
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
 .diagram figcaption {
   margin-top: 0.8rem;
   font-size: 0.9rem;
@@ -94,53 +96,15 @@ h2 {
   line-height: 1.4;
 }
 
-/* Individual figure sizing - add these classes to your HTML */
-/* For overview figure */
-.diagram.overview img {
-  width: min(550px, 100%);
-}
+/* Individual figure sizing overrides */
+.diagram.overview img { width: min(550px, 100%); }
+.diagram.pipeline img { width: min(375px, 100%); }
+.diagram.fault img    { width: min(600px, 100%); }
+.diagram.scale img    { width: min(700px, 100%); }
+.diagram.imputation img { width: min(800px, 100%); }
+.diagram.zetson img     { width: min(800px, 100%); }
 
-/* For pipeline figure */
-.diagram.pipeline img {
-  width: min(375px, 100%);
-}
-
-/* For fault visualization figure */
-.diagram.fault img {
-  width: min(600px, 100%);
-}
-
-.diagram.scale img {
-  width: min(700px, 100%);
-}
-
-
-.diagram.imputation img {
-  width: min(800px, 100%);
-}
-
-.diagram.zetson img {
-  width: min(800px, 100%);
-}
-
-
-/* Footer */
-footer {
-  background: #0d1b4c;
-  color: white;
-  text-align: center;
-  padding: 1.2rem 1rem;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-footer p {
-  margin: 0.2rem 0;
-}
-
-
-/* === Paper Info & Citation === */
+/* ================== PAPER INFO + CITE ================== */
 .paper-info {
   background: #f9f9fc;
   border: 1px solid #ddd;
@@ -151,17 +115,15 @@ footer p {
   font-size: 1rem;
   color: #000000;
 }
-.paper-info p {
-  margin: 0.5rem 0;
-}
+
+.paper-info p { margin: 0.5rem 0; }
+
 .paper-info a {
   color: #0d1b4c;
   font-weight: 600;
-  text-decoration: none;
 }
-.paper-info a:hover {
-  text-decoration: underline;
-}
+
+.paper-info a:hover { text-decoration: underline; }
 
 /* Cite button */
 .paper-info button {
@@ -175,9 +137,8 @@ footer p {
   font-size: 0.9rem;
   transition: background 0.3s;
 }
-.paper-info button:hover {
-  background: #142a73;
-}
+
+.paper-info button:hover { background: #142a73; }
 
 /* BibTeX block */
 #bibtex {
@@ -194,27 +155,43 @@ footer p {
   color: #000000;
 }
 
+/* ================== TABLE ================== */
 .case-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9rem;
-  font-family: 'Roboto Mono', monospace;
-  font-style: normal;   
+  font-family: 'Raleway', sans-serif;
+  font-style: normal !important;
 }
 
 .case-table th, .case-table td {
   border: 1px solid #ccc;
   padding: 6px 8px;
   text-align: center;
-  font-style: normal;   
 }
 
 .case-table th {
   background-color: #f0f4ff;
   font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  font-style: normal;   
 }
 
+/* ================== FOOTER ================== */
+footer {
+  background: #1a1a1a;
+  padding: 1.8rem 0;
+  border-top: 1px solid #333;
+  color: #f5f5f5;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+footer .authors a {
+  color: #ffd966;
+  font-weight: 500;
+}
+
+footer .authors a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
