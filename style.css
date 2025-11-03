@@ -1,4 +1,6 @@
-/* ================== GLOBAL ================== */
+/* ===========================
+   GLOBAL
+=========================== */
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -18,12 +20,9 @@ a:hover {
   color: #d35400;
 }
 
-/* Remove italics from all headings */
-h1, h2, h3, h4, h5, h6 {
-  font-style: normal !important;
-}
-
-/* ================== HEADER ================== */
+/* ===========================
+   HEADER
+=========================== */
 header {
   background: #0d1b4c;
   color: white;
@@ -42,7 +41,9 @@ header p {
   font-style: italic;
 }
 
-/* ================== SECTIONS ================== */
+/* ===========================
+   SECTIONS & HEADINGS
+=========================== */
 section {
   max-width: 1000px;
   margin: 2rem auto;
@@ -56,9 +57,12 @@ h2 {
   padding-left: 10px;
   margin-top: 2.5rem;
   font-family: 'Playfair Display', serif;
+  font-style: normal;
 }
 
-/* Highlight box */
+/* ===========================
+   HIGHLIGHT BOX
+=========================== */
 .highlight-box {
   background: #f0f4ff;
   border-left: 5px solid #0d1b4c;
@@ -69,7 +73,9 @@ h2 {
   color: #000000;
 }
 
-/* ================== FIGURES ================== */
+/* ===========================
+   FIGURES
+=========================== */
 .diagram {
   text-align: center;
   margin: 2rem auto;
@@ -96,7 +102,7 @@ h2 {
   line-height: 1.4;
 }
 
-/* Individual figure sizing overrides */
+/* Individual image sizing */
 .diagram.overview img { width: min(550px, 100%); }
 .diagram.pipeline img { width: min(375px, 100%); }
 .diagram.fault img    { width: min(600px, 100%); }
@@ -104,7 +110,9 @@ h2 {
 .diagram.imputation img { width: min(800px, 100%); }
 .diagram.zetson img     { width: min(800px, 100%); }
 
-/* ================== PAPER INFO + CITE ================== */
+/* ===========================
+   PAPER INFO
+=========================== */
 .paper-info {
   background: #f9f9fc;
   border: 1px solid #ddd;
@@ -116,16 +124,11 @@ h2 {
   color: #000000;
 }
 
-.paper-info p { margin: 0.5rem 0; }
-
 .paper-info a {
   color: #0d1b4c;
   font-weight: 600;
 }
 
-.paper-info a:hover { text-decoration: underline; }
-
-/* Cite button */
 .paper-info button {
   background: #0d1b4c;
   color: #fff;
@@ -138,13 +141,17 @@ h2 {
   transition: background 0.3s;
 }
 
-.paper-info button:hover { background: #142a73; }
+.paper-info button:hover {
+  background: #142a73;
+}
 
-/* BibTeX block */
+/* ===========================
+   BIBTEX BLOCK
+=========================== */
 #bibtex {
   margin-top: 1rem;
   font-size: 0.85rem;
-  font-family: monospace;
+  font-family: 'Roboto Mono', monospace;
   background: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -155,14 +162,16 @@ h2 {
   color: #000000;
 }
 
-/* ================== TABLE ================== */
+/* ===========================
+   TABLE
+=========================== */
 .case-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9rem;
   font-family: 'Raleway', sans-serif;
-  font-style: normal !important;
+  font-style: normal;  
 }
 
 .case-table th, .case-table td {
@@ -174,24 +183,33 @@ h2 {
 .case-table th {
   background-color: #f0f4ff;
   font-weight: bold;
+  text-align: center;
 }
 
-/* ================== FOOTER ================== */
+/* ===========================
+   FOOTER (FIXED + MERGED)
+=========================== */
 footer {
-  background: #1a1a1a;
-  padding: 1.8rem 0;
-  border-top: 1px solid #333;
-  color: #f5f5f5;
+  background: #0d1b4c;   
+  color: white;
   text-align: center;
+  padding: 1.8rem 0;
+  margin-top: 3rem;
   font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+footer .authors {
+  color: white;
 }
 
 footer .authors a {
-  color: #ffd966;
+  color: white;
+  text-decoration: none;
   font-weight: 500;
 }
 
 footer .authors a:hover {
-  color: #ffffff;
+  color: #ffd966;
   text-decoration: underline;
 }
